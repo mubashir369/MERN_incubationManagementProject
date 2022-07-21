@@ -1,11 +1,13 @@
 import React,{useState} from 'react'
 import '../Login/UserLogin.css'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 function UserSignUp() {
+    const navigator=useNavigate()
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [name,setName]=useState('')
+ 
     const Register=(e)=>{
         e.preventDefault()
         const data={
@@ -13,7 +15,16 @@ function UserSignUp() {
             password:password,
             name:name
         }
-        axios.post('http://localhost:9000/register',data)
+        axios.post('http://localhost:9000/register',data).then((res)=>{
+            console.log(res.data);
+            if(res.data.status=="err"){
+              
+                alert("Email is Already used ")
+            }else{
+              alert("data added")
+              navigator('/login')
+            }
+        })
 
     }
   return (
@@ -33,6 +44,7 @@ function UserSignUp() {
             value={email}
             onChange={(e)=>{setEmail(e.target.value)}}
           />
+        
           <input
             type="text"
             id="login"
