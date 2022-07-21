@@ -3,10 +3,12 @@
     display: flex;
     justify-content: space-around;
     font-size: small;
+    
   }
   .body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
+   
   }
   .heading {
     color: #56baed;
@@ -15,13 +17,6 @@
     font-weight: normal;
   }
   
-  a {
-    color: #92badd;
-    display: inline-block;
-    text-decoration: none;
-    font-weight: 400;
-   cursor: pointer;
-  }
   
   h2 {
     text-align: center;
@@ -80,7 +75,9 @@
     color: #0d0d0d;
     border-bottom: 2px solid #5fbae9;
   }
-  
+ .secondDiv{
+     display: flex;
+ } 
   /* FORM TYPOGRAPHY*/
   
   input[type="button"],
