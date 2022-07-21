@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../User/Login/UserLogin.css";
 
@@ -17,12 +17,20 @@ function AdminLogin() {
       console.log(res.data);
       if(res.data.admin){
         alert("login Success")
+        localStorage.setItem('adminToken',res.data.token)
         navigate('/admin-dashboard')
       }else{
         alert('invalid userName or Password')
       }
     })
   };
+  useEffect(()=>{
+    const token=localStorage.getItem('adminToken')
+    if(token){
+//      navigate('/admin-dashboard')
+    }
+  
+  },[])
   return (
     <div className="body">
       <div className="wrapper fadeInDown">
