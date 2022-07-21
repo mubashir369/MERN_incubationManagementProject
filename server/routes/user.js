@@ -21,21 +21,36 @@ router.post("/login", (req, res) => {
   userHelper
     .login(req.body)
     .then((token) => {
-        console.log(token);
+      console.log(token);
       res.json({ status: "ok", token: token, user: true });
     })
     .catch(() => {
       res.json({ status: "err", user: false });
     });
 });
-router.post('/apply-form/:id',(req,res)=>{
-    console.log("forme submission success");
-    console.log(req.params.id);
-    console.log(req.body);
-    userHelper.addFormData(req.body,req.params.id).then(()=>{
-      res.json({status:"ok", form:true})
-    }).catch(()=>{
-      res.json({status:"err" , form:false})
+router.post("/apply-form/:id", (req, res) => {
+  console.log("forme submission success");
+  console.log(req.params.id);
+  console.log(req.body);
+  userHelper
+    .addFormData(req.body, req.params.id)
+    .then(() => {
+      res.json({ status: "ok", form: true });
     })
-})
+    .catch(() => {
+      res.json({ status: "err", form: false });
+    });
+});
+router.get("/find-form/:id", (req, res) => {
+  console.log(req.params.id);
+  console.log("find form get request received");
+  userHelper
+    .findForm(req.params.id)
+    .then((formData) => {
+      res.json({ status: "ok", formData: formData });
+    })
+    .catch(() => {
+      res.json({ status: "err" });
+    });
+});
 module.exports = router;
