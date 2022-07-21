@@ -14,12 +14,21 @@ function IncubationForm() {
     }
     const apply=(e)=>{
         e.preventDefault()
+        console.log("button Clicked");
         const token=localStorage.getItem('userToken')
+        console.log(token);
         if(token){
             const user=jwtDecode(token)
+            console.log(user);
            
             axios.post(`http://localhost:9000/apply-form/${user.id}`,form).then((res)=>{
-
+          if(res.data.status==="ok"){
+            alert('form Submitted')
+            navigate('/user-dashboard')
+          }else{
+            alert('please try again later')
+            navigate('/user-dashboard')
+          }
             })
         }
 
@@ -30,7 +39,7 @@ function IncubationForm() {
         if(!token){
             navigate('/login')
         }
-    })
+    },[])
   return (
     <div className="border border-secondary rounded">
       <div className="pt-5 ">
@@ -40,6 +49,7 @@ function IncubationForm() {
           <form onSubmit={apply}>
             <div className="d-flex">
               <div className="form-group">
+                 
                 <input
                   type="text"
                   className="form-control"
