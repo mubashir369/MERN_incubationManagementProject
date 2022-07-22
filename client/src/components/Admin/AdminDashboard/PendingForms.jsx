@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "jquery/dist/jquery.min.js";
 
-//Datatable Modules
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import $ from "jquery";
-import axios from "axios";
 
-function PendingForms() {
+
+function PendingForms(props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-      axios.get("http://localhost:9000/admin/allForms").then((res)=>{
-          const pending=res.data.Forms.filter((form)=>form.status==='pending')
-          setData(pending)
-      })
+     
+      setData(props.forms.filter((form)=>form.status==='pending'))
    
     $(document).ready(function () {
       setTimeout(function () {
@@ -25,6 +22,9 @@ function PendingForms() {
       }, 1000);
     });
   }, []);
+  useEffect(()=>{
+    setData(props.forms.filter((form)=>form.status==='pending'))
+  },[props])
 
   return (
     <div>

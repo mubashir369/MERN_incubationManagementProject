@@ -10,6 +10,19 @@ router.post('/login',(req,res)=>{
     })
 
 })
+router.get('/allForms',async(req,res)=>{
+ adminHelper.getAllForms().then((Forms)=>{
+     console.log("calll");
+    res.json({status:"ok", Forms:Forms})
+ }).catch(()=>{
+     res.json({status:"err"})
+ })
+
+})
+router.post('/change-status',(req,res)=>{
+    console.log(req.body);
+    adminHelper.changeFormStatus(req.body)
+})
 
 
 module.exports=router

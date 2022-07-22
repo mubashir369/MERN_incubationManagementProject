@@ -30,7 +30,7 @@ function UserLogin() {
     useEffect(()=>{
         const token=localStorage.getItem('userToken')
         if(token){
-           // navigator('/user-dashboard')
+            navigator('/user-dashboard')
         }
     },[])
   return (

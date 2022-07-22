@@ -57,7 +57,7 @@ module.exports = {
       try {
         await Form.create({
           userId: usrId,
-          status: "pending",
+          status: "new",
           slot: "Not",
           name: data.name,
           phone: data.phone,

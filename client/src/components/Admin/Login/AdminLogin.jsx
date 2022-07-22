@@ -27,7 +27,7 @@ function AdminLogin() {
   useEffect(()=>{
     const token=localStorage.getItem('adminToken')
     if(token){
-//      navigate('/admin-dashboard')
+     navigate('/admin-dashboard')
     }
   
   },[])
