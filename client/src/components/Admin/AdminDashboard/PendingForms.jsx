@@ -20,6 +20,15 @@ function PendingForms(props) {
     //   console.log(result.data.Form);
     // });
   };
+  const approve=(e,id)=>{
+    e.preventDefault()
+    setData(data.filter((form) => form._id !== id));
+    const change = {
+      id: id,
+      status: "Approved",
+    };
+    await axios.post(`http://localhost:9000/admin/change-status`, change);  
+  }
   const decline = async (e, id) => {
     e.preventDefault();
     setData(data.filter((form) => form._id !== id));
@@ -78,7 +87,7 @@ function PendingForms(props) {
                       </button>
                     </td>
                     <td>
-                      <button className="btn btn-success">Approve</button>
+                      <button className="btn btn-success" onClick={(e)=>approve(e,result._id)} >Approve</button>
                     </td>
                     <td>
                       <button className="btn btn-danger" onClick={(e)=>decline(e,result._id)} >Decline</button>
