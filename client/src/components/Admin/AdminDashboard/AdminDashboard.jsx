@@ -30,9 +30,9 @@ function AdminDashboard(props) {
     props.setShow(true)
     props.setFormData(data.filter((form)=>form._id===id))
     console.log("fdata",data.filter((form)=>form._id===id));
-    axios.get(`http://localhost:9000/admin/getForm/${id}`).then((result) => {
-      console.log(result.data.Form);
-    });
+    // axios.get(`http://localhost:9000/admin/getForm/${id}`).then((result) => {
+    //   console.log(result.data.Form);
+    // });
   };
 
   useEffect(() => {

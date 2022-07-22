@@ -31,5 +31,9 @@ router.get("/getForm/:id", (req, res) => {
         res.json({status:"ok" , Form:form})
     })
 });
+router.get('/removeForm/:id',(req,res)=>{
+    console.log(req.params.id);
+    adminHelper.removeForm(req.params.id)
+})
 
 module.exports = router;

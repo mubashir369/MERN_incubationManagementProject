@@ -8,7 +8,7 @@ function FormData(props) {
     <div>
      
       <div className="border border-secondary rounded p-5">
-      <button className="btn btn-danger" onClick={closeForm} >close</button>
+      <button className="btn btn-dark" onClick={closeForm} >Back</button>
         <div className="pt-5 ">
           <h1 className="text-center">Incubation Form Data</h1>
           <div className="">

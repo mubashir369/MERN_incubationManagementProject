@@ -61,4 +61,15 @@ module.exports = {
       }
     });
   },
+  removeForm:(id)=>{
+    return new Promise(async(resolve,reject)=>{
+      try{
+        await Form.deleteOne({_id:id})
+        resolve()
+      }catch(err){
+        console.log(err);
+        reject()
+      }
+    })
+  }
 };

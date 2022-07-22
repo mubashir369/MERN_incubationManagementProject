@@ -7,9 +7,24 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import $ from "jquery";
+import axios from "axios";
 
 function PendingForms(props) {
   const [data, setData] = useState([]);
+  const openForm = (e, id) => {
+    e.preventDefault();
+    props.setShow(true)
+    props.setFormData(data.filter((form)=>form._id===id))
+    console.log("fdata",data.filter((form)=>form._id===id));
+    // axios.get(`http://localhost:9000/admin/getForm/${id}`).then((result) => {
+    //   console.log(result.data.Form);
+    // });
+  };
+  const decline=(e,id)=>{
+    e.preventDefault()
+    setData(data.filter((form)=>form._id!==id))
+    axios.get(`http://localhost:9000/admin/removeForm/${id}`)
+  }
 
   useEffect(() => {
     setData(props.forms.filter((form) => form.status === "pending"));
@@ -51,13 +66,18 @@ function PendingForms(props) {
                     <td>{result.Cname}</td>
                     <td>{result.state}</td>
                     <td>
-                      <button className="btn btn-dark">Open</button>
+                      <button
+                        className="btn btn-dark"
+                        onClick={(e) => openForm(e, result._id)}
+                      >
+                        Open
+                      </button>
                     </td>
                     <td>
                       <button className="btn btn-success">Approve</button>
                     </td>
                     <td>
-                      <button className="btn btn-danger">Decline</button>
+                      <button className="btn btn-danger" onClick={(e)=>decline(e,result._id)} >Decline</button>
                     </td>
                   </tr>
                 );
