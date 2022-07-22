@@ -24,7 +24,7 @@ module.exports = {
     return new Promise(async (resolve, reject) => {
       try {
         const user = await User.findOne({ email: data.email });
-
+        console.log("daaaaaaaaaaaaaata");
         if (user) {
           const validate = await bcrypt.compare(data.password, user.password);
 

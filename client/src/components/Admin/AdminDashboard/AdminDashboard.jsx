@@ -51,12 +51,12 @@ function AdminDashboard(props) {
   return (
     <div>
       <div className="MainDiv">
-        <div class="jumbotron text-center">
+        <div className="jumbotron text-center">
           <h3>NewApplicationList</h3>
         </div>
 
-        <div className="">
-          <table id="example" class="table table-hover table-bordered">
+        <div className="container">
+          <table id="example" className="table table-hover table-bordered m-3">
             <thead>
               <tr>
                 <th>S.no</th>

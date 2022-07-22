@@ -21,6 +21,7 @@ router.post("/login", (req, res) => {
   userHelper
     .login(req.body)
     .then((token) => {
+
       console.log(token);
       res.json({ status: "ok", token: token, user: true });
     })

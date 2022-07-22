@@ -1,10 +1,14 @@
 *{
-    margin:0 !important;
+    margin:0;
     padding:0;
     text-decoration: none;
 }
-.container{
+.sidebarContainer{
     display:flex;
+}
+.sidebarRight{
+    display: flex;
+    justify-content: space-around;
 }
 main{
     width: 100%;
@@ -31,6 +35,7 @@ main{
     margin-left: 50px;
 }
 .link{
+    text-decoration: none;
     display: flex;
     color: #fff;
     padding: 10px 15px;

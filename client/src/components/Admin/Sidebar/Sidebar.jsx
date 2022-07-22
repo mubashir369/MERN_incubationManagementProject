@@ -1,18 +1,15 @@
 import React, { useState } from "react";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 import "./Sidebar.css";
-import {
-  FaTh,
-  FaBars,
-  FaUserAlt,
-  FaRegChartBar,
-  FaCommentAlt,
-  FaShoppingBag,
-  FaThList,
-} from "react-icons/fa";
+import {  FaBars, FaThList } from "react-icons/fa";
+import { AiOutlineLogout ,AiFillDashboard} from "react-icons/ai";
+import {BsCardChecklist,BsUiChecksGrid} from 'react-icons/bs'
+import {MdFreeCancellation} from 'react-icons/md'
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ children }) => {
-    const navigate=useNavigate()
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const adminLogout = (e) => {
@@ -22,7 +19,7 @@ const Sidebar = ({ children }) => {
       const token = localStorage.getItem("adminToken");
       if (token) {
         localStorage.removeItem("adminToken");
-        navigate('/admin-login')
+        navigate("/admin-login");
       }
     }
   };
@@ -30,22 +27,26 @@ const Sidebar = ({ children }) => {
     {
       path: "/admin-dashboard",
       name: "Dashboard",
-      icon: <FaTh />,
+      icon: <AiFillDashboard/>,
     },
     {
       path: "/approved-forms",
-      name: "Record List",
-      icon: <FaThList />,
+      name: "RecordList",
+      icon: <BsCardChecklist />,
     },
     {
       path: "/decline-forms",
-      name: "Declined Forms",
-      icon: <FaThList />,
+      name: "DeclinedForms",
+      icon: <MdFreeCancellation />,
     },
-   
+    {
+      path: "/slot",
+      name: "BookingSlot",
+      icon: <BsUiChecksGrid />,
+    },
   ];
   return (
-    <div className="container">
+    <div className="sidebarContainer">
       <div style={{ width: isOpen ? "200px" : "50px" }} className="sidebar">
         <div className="top_section">
           <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">
@@ -72,7 +73,9 @@ const Sidebar = ({ children }) => {
           </NavLink>
         ))}
         <a className="link" onClick={adminLogout} activeclassName="active">
-          <div className="icon"></div>
+          <div className="icon">
+            <AiOutlineLogout />
+          </div>
           <div
             style={{ display: isOpen ? "block" : "none" }}
             className="link_text"
@@ -81,7 +84,24 @@ const Sidebar = ({ children }) => {
           </div>
         </a>
       </div>
-      <main>{children}</main>
+
+      <main>
+        <Navbar bg="dark" variant="dark">
+          <Container>
+            <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
+            <Navbar.Toggle />
+            <Navbar.Collapse className="justify-content-end">
+              <Navbar.Text>
+              
+                <a href="" onClick={(e) => e.preventDefault()}>
+                  Log Out{" "}<AiOutlineLogout />
+                </a>
+              </Navbar.Text>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+        {children}
+      </main>
     </div>
   );
 };
