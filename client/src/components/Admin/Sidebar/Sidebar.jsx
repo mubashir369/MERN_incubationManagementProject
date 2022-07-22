@@ -28,35 +28,21 @@ const Sidebar = ({ children }) => {
   };
   const menuItem = [
     {
-      path: "/",
+      path: "/admin-dashboard",
       name: "Dashboard",
       icon: <FaTh />,
     },
     {
-      path: "/about",
-      name: "About",
-      icon: <FaUserAlt />,
-    },
-    {
-      path: "/analytics",
-      name: "Analytics",
-      icon: <FaRegChartBar />,
-    },
-    {
-      path: "/comment",
-      name: "Comment",
-      icon: <FaCommentAlt />,
-    },
-    {
-      path: "/product",
-      name: "Product",
-      icon: <FaShoppingBag />,
-    },
-    {
-      path: "/productList",
-      name: "Product List",
+      path: "/approved-forms",
+      name: "Record List",
       icon: <FaThList />,
     },
+    {
+      path: "/decline-forms",
+      name: "Declined Forms",
+      icon: <FaThList />,
+    },
+   
   ];
   return (
     <div className="container">

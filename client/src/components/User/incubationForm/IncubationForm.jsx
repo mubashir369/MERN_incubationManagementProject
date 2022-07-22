@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import {useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import './IncubationForm.css'
 
 function IncubationForm() {
     const navigate=useNavigate()
@@ -42,13 +43,13 @@ function IncubationForm() {
     },[])
   return (
     <div className="border border-secondary rounded">
-      <div className="pt-5 ">
+      <div className=" maindiv ">
         <h1 className="text-center">Incubation Form</h1>
         
-        <div className="container">
-          <form onSubmit={apply}>
+        <div className="formDiv ms-5">
+          <form onSubmit={apply} className="">
             <div className="d-flex">
-              <div className="form-group">
+              <div className="form-group m-2 fw" >
                  
                 <input
                   type="text"
@@ -59,7 +60,7 @@ function IncubationForm() {
                   onChange={((e)=>setForm({...form, name:e.target.value}))}
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group m-2 fw">
                 <input
                   type="text"
                   className="form-control"
@@ -69,7 +70,7 @@ function IncubationForm() {
                   onChange={((e)=>setForm({...form, phone:e.target.value}))}
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group m-2 fw">
                 <input
                   type="text"
                   className="form-control"
@@ -81,7 +82,7 @@ function IncubationForm() {
               </div>
             </div>
             <div className="d-flex">
-              <div className="form-group">
+              <div className="form-group m-2 fw">
                 <input
                   type="text"
                   className="form-control"
@@ -91,7 +92,7 @@ function IncubationForm() {
                   onChange={((e)=>setForm({...form, city:e.target.value}))}
                 />{" "}
               </div>
-              <div className="form-group">
+              <div className="form-group m-2 fw">
                 <input
                   type="email"
                   className="form-control"
@@ -101,7 +102,7 @@ function IncubationForm() {
                   onChange={((e)=>setForm({...form, email:e.target.value}))}
                 />{" "}
               </div>
-              <div className="form-group">
+              <div className="form-group m-2 fw">
                 <input
                   type="text"
                   className="form-control"

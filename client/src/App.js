@@ -7,6 +7,8 @@ import IncubationFormPage from "./pages/User/IncubationFormPage";
 import AdminLoginPage from "./pages/Admin/AdminLoginPage";
 import AdminDashboardPage from "./pages/Admin/AdminDashboardPage";
 import Application from "./store/ApplicationContext";
+import ApprovedFormsPage from "./pages/Admin/ApprovedFormsPage";
+import DeclineForm from "./pages/Admin/DeclineForm";
 function App() {
   return (
     <div>
@@ -21,7 +23,10 @@ function App() {
             <Route path="/admin-login" element={<AdminLoginPage />} />
           </Routes>
           <Routes>
-            <Route path="admin-dashboard" element={<AdminDashboardPage />} />
+          <Route path="/admin" element={<AdminLoginPage />} />
+            <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
+            <Route path="/approved-forms" element={<ApprovedFormsPage/>}  />
+            <Route path="/decline-forms" element={<DeclineForm/>} />
           </Routes>
         </Router>
       </Application>
