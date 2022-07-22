@@ -5,6 +5,7 @@ import PendingForms from "../../components/Admin/AdminDashboard/PendingForms";
 import axios from "axios";
 function AdminDashboardPage() {
   const [allForms,setAllforms]=useState([])
+  const [status,setStatus]=useState(false)
 
   useEffect(()=>{
     axios.get("http://localhost:9000/admin/allForms").then((res) => {
@@ -18,11 +19,11 @@ function AdminDashboardPage() {
       setAllforms(allForm)
     });
 
-  },[allForms])
+  },[status])
   return (
     <div>
       <Sidebar> 
-        <AdminDashboard forms={allForms} setAllforms={setAllforms} />
+        <AdminDashboard forms={allForms} setAllforms={setAllforms} status={status} setStatus={setStatus} />
         <br /> ,<br />
         <PendingForms forms={allForms} setAllforms={setAllforms}  />
       </Sidebar>

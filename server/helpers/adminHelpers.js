@@ -51,4 +51,14 @@ module.exports = {
       }
     });
   },
+  getForm: (id) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const form = await Form.findOne({ _id: id });
+        resolve(form);
+      } catch (err) {
+        console.log(err);
+      }
+    });
+  },
 };

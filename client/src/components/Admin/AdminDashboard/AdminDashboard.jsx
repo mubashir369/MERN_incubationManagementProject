@@ -21,15 +21,18 @@ function AdminDashboard(props) {
           id:id,
           status:'pending'
       }
-       axios.post(`http://localhost:9000/admin/change-status`,change).then(()=>{
-        props.setAllForms(props.forms.map((form)=>{
-          if(form._id===id){
-            return{...form,status:'pending'}
-          }
-          return form
-        }))
+      
+      props.setStatus(!props.status)
+      await axios.post(`http://localhost:9000/admin/change-status`,change)
+     
+       
 
-       })
+  }
+  const openForm=(e,id)=>{
+    e.preventDefault()
+    axios.get(`http://localhost:9000/admin/getForm/${id}`).then((result)=>{
+      console.log(result.data.Form);
+    })
 
   }
 
@@ -73,7 +76,7 @@ function AdminDashboard(props) {
                     <td>{result.Cname}</td>
                     <td>{result.state}</td>
                     <td>
-                      <button className="btn btn-primary">Open</button>
+                      <button className="btn btn-primary" onClick={(e)=>openForm(e,result._id)} >Open</button>
                     </td>
                     <td>
                       <button
