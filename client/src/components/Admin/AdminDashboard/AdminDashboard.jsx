@@ -14,41 +14,36 @@ import axios from "axios";
 
 function AdminDashboard(props) {
   const [data, setData] = useState([]);
-  const pending=async(e,id)=>{
-    e.preventDefault()
-      setData(data.filter((form)=>form._id!==id))
-      const change={
-          id:id,
-          status:'pending'
-      }
-      
-      props.setStatus(!props.status)
-      await axios.post(`http://localhost:9000/admin/change-status`,change)
-     
-       
+  const pending = async (e, id) => {
+    e.preventDefault();
+    setData(data.filter((form) => form._id !== id));
+    const change = {
+      id: id,
+      status: "pending",
+    };
 
-  }
-  const openForm=(e,id)=>{
-    e.preventDefault()
-    axios.get(`http://localhost:9000/admin/getForm/${id}`).then((result)=>{
+    props.setStatus(!props.status);
+    await axios.post(`http://localhost:9000/admin/change-status`, change);
+  };
+  const openForm = (e, id) => {
+    e.preventDefault();
+    axios.get(`http://localhost:9000/admin/getForm/${id}`).then((result) => {
       console.log(result.data.Form);
-    })
-
-  }
+    });
+  };
 
   useEffect(() => {
-  
-    setData(props.forms.filter((form)=>form.status==='new'))
-    
+    setData(props.forms.filter((form) => form.status === "new"));
+
     $(document).ready(function () {
       setTimeout(function () {
         $("#example").DataTable();
       }, 1000);
     });
   }, []);
-  useEffect(()=>{
-    setData(props.forms.filter((form)=>form.status==='new'))
-  },[props])
+  useEffect(() => {
+    setData(props.forms.filter((form) => form.status === "new"));
+  }, [props]);
 
   return (
     <div>
@@ -76,12 +71,17 @@ function AdminDashboard(props) {
                     <td>{result.Cname}</td>
                     <td>{result.state}</td>
                     <td>
-                      <button className="btn btn-primary" onClick={(e)=>openForm(e,result._id)} >Open</button>
+                      <button
+                        className="btn btn-primary"
+                        onClick={(e) => openForm(e, result._id)}
+                      >
+                        Open
+                      </button>
                     </td>
                     <td>
                       <button
                         className="btn btn-secondary"
-                        onClick={(e) => pending(e,result._id)}
+                        onClick={(e) => pending(e, result._id)}
                       >
                         Pending
                       </button>

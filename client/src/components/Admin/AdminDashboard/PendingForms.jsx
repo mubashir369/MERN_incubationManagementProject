@@ -8,23 +8,21 @@ import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import $ from "jquery";
 
-
 function PendingForms(props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-     
-      setData(props.forms.filter((form)=>form.status==='pending'))
-   
+    setData(props.forms.filter((form) => form.status === "pending"));
+
     $(document).ready(function () {
       setTimeout(function () {
         $("#example").DataTable();
       }, 1000);
     });
   }, []);
-  useEffect(()=>{
-    setData(props.forms.filter((form)=>form.status==='pending'))
-  },[props])
+  useEffect(() => {
+    setData(props.forms.filter((form) => form.status === "pending"));
+  }, [props]);
 
   return (
     <div>
@@ -46,10 +44,10 @@ function PendingForms(props) {
               </tr>
             </thead>
             <tbody>
-              {data.map((result,index) => {
+              {data.map((result, index) => {
                 return (
                   <tr>
-                    <td>{index+1}</td>
+                    <td>{index + 1}</td>
                     <td>{result.Cname}</td>
                     <td>{result.state}</td>
                     <td>
