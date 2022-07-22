@@ -88,12 +88,12 @@ const Sidebar = ({ children }) => {
       <main>
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
+            <Navbar.Brand href="#home">Admin Panel</Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
               
-                <a href="" onClick={(e) => e.preventDefault()}>
+                <a href="" onClick={adminLogout}>
                   Log Out{" "}<AiOutlineLogout />
                 </a>
               </Navbar.Text>
