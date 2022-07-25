@@ -35,5 +35,15 @@ router.get('/removeForm/:id',(req,res)=>{
     console.log(req.params.id);
     adminHelper.removeForm(req.params.id)
 })
-
+router.get('/getAllSlots',(req,res)=>{
+  adminHelper.getAllSlots().then((data)=>{
+    res.json({status:"ok" , Slots:data})
+  }).catch(()=>{
+    res.json({status:"err"})
+  })
+})
+router.post('/setSlot',(req,res)=>{
+  console.log(req.body);
+  adminHelper.setSlot(req.body)
+})
 module.exports = router;

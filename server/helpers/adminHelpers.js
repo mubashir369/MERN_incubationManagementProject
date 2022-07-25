@@ -2,6 +2,7 @@ const Admin = require("../model/adminModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Form = require("../model/incubationFormModel");
+const Slot=require("../model/bookingSlotModel")
 module.exports = {
   login: (data) => {
     return new Promise(async (resolve, reject) => {
@@ -69,6 +70,29 @@ module.exports = {
       }catch(err){
         console.log(err);
         reject()
+      }
+    })
+  },
+  getAllSlots:()=>{
+    return new Promise(async(resolve,reject)=>{
+      try{
+        const slots= await Slot.find()
+        
+        resolve(slots)
+      }catch(err){
+        reject()
+        console.log(err);
+      }
+    })
+  },
+  setSlot:(data)=>{
+    return new Promise(async(resolve,reject)=>{
+      try{
+        await Form.updateOne({_id:data.Cname},{$set:{slot:data.slotId}})
+        resolve()
+      }catch(err){
+        reject()
+        console.log(err);
       }
     })
   }

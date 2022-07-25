@@ -7,6 +7,7 @@ import "./UserDashboard.css";
 function UserDashboard() {
   const navigator = useNavigate();
   const [form,setForm]=useState(false)
+  const [status,setStatus]=useState('')
   const apply=(e)=>{
       e.preventDefault()
       navigator('/incubation-form')
@@ -17,6 +18,7 @@ function UserDashboard() {
       console.log(data.data);
       if(data.data.formData){
         setForm(true)
+        setStatus(data.data.formData.status)
       }
     })
   }
@@ -55,13 +57,17 @@ function UserDashboard() {
               Log Out
             </a>
           </li>
+          
         </ul>
       </div>
       <div class="Dashboardcontent">
         <h1>Welcome</h1>
 
         <div>
-         { form ? <h3>Form Submitted</h3>: <button className="DashboardBtn" onClick={apply}>
+         { form ? <div>
+          <h3>Form Already Submitted</h3><br />
+          <h4 > <span style={{color:'#e3820b'}} >Status</span> : {status}</h4>
+         </div> : <button className="DashboardBtn" onClick={apply}>
             <span className="DashboardSpan"></span>Apply For incubation
           </button>}
         </div>

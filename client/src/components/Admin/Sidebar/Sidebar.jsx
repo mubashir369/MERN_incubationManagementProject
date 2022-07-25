@@ -86,7 +86,7 @@ const Sidebar = ({ children }) => {
       </div>
 
       <main>
-        <Navbar bg="dark" variant="dark">
+        <Navbar sticky="top" bg="dark" variant="dark">
           <Container>
             <Navbar.Brand href="#home">Admin Panel</Navbar.Brand>
             <Navbar.Toggle />
