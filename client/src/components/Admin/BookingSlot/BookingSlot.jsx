@@ -12,13 +12,18 @@ function BookingSlot() {
   const [show, setShow] = useState(false);
   const [applicantsList, setApplicantsList] = useState([]);
   const [clikId, setClickId] = useState("");
+  const [formData, setFormData] = useState([]);
+  const [newId, setNewId] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [slotValue,setSlotValue]=useState('')
+  const [slotValue, setSlotValue] = useState("");
 
   const bookSlot = async (e, id) => {
     e.preventDefault();
-    axios.get("http://localhost:9000/admin/allForms").then((res) => {
+
+    const valu = formData.find((item) => item === id);
+    if (valu === undefined) {
+      axios.get("http://localhost:9000/admin/allForms").then((res) => {
       const allForm = res.data.Forms;
       setApplicantsList(
         allForm.filter(
@@ -26,29 +31,29 @@ function BookingSlot() {
         )
       );
     });
-     handleShow();
+    handleShow();
 
-    console.log("clicked ", id);
     setClickId(id);
+    }else{
+      alert("This Slot Already Booked try another Slot")
+    }
+
+    
   };
   const save = (e) => {
     e.preventDefault();
-  
-    
-   
-    if(slotValue!==""){
+
+    if (slotValue !== "") {
       $(`.${clikId}`).css("background-color", "#e8a023");
-      const data={
-        Cname:slotValue,
-        slotId:clikId
-      }
-      axios.post(`http://localhost:9000/admin/setSlot/`,data)
+      const data = {
+        Cname: slotValue,
+        slotId: clikId,
+      };
+      axios.post(`http://localhost:9000/admin/setSlot/`, data);
       handleClose();
-    }else{
-      alert('please choose options')
+    } else {
+      alert("please choose options");
     }
-   
-   
   };
   useEffect(() => {
     axios.get("http://localhost:9000/admin/getAllSlots").then((result) => {
@@ -60,14 +65,15 @@ function BookingSlot() {
       setSecB(secBdata[0].slots);
       setSecC(secCdata[0].slots);
       setSecD(secDdata[0].slots);
-      axios.get("http://localhost:9000/admin/allForms").then((res)=>{
-        const allForm = res.data.Forms
-        allForm.filter((item)=>{
-          if(item.slot!=="Not"){
+      axios.get("http://localhost:9000/admin/allForms").then((res) => {
+        const allForm = res.data.Forms;
+        setFormData(allForm.map((item) => item.slot));
+        allForm.filter((item) => {
+          if (item.slot !== "Not") {
             $(`.${item.slot}`).css("background-color", "#e8a023");
           }
-        })
-      })
+        });
+      });
     });
   }, []);
   return (
@@ -137,14 +143,16 @@ function BookingSlot() {
           </Modal.Header>
           <Modal.Body>
             <select
-            required
+              required
               class="form-select"
               aria-label="Default select example"
               onChange={(e) => {
                 setSlotValue(e.target.value);
               }}
             >
-              <option value="" selected>--select--</option>
+              <option value="" selected>
+                --select--
+              </option>
 
               {applicantsList &&
                 applicantsList.map((item) => {
@@ -156,7 +164,12 @@ function BookingSlot() {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <button className="btn btn-primary" variant="primary" type="submit" onClick={(e) => save(e)}>
+            <button
+              className="btn btn-primary"
+              variant="primary"
+              type="submit"
+              onClick={(e) => save(e)}
+            >
               Save Changes
             </button>
           </Modal.Footer>

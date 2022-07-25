@@ -6,14 +6,14 @@ import UserDashboardPage from "./pages/User/UserDashboardPage";
 import IncubationFormPage from "./pages/User/IncubationFormPage";
 import AdminLoginPage from "./pages/Admin/AdminLoginPage";
 import AdminDashboardPage from "./pages/Admin/AdminDashboardPage";
-import Application from "./store/ApplicationContext";
+
 import ApprovedFormsPage from "./pages/Admin/ApprovedFormsPage";
 import DeclineForm from "./pages/Admin/DeclineForm";
 import BookingSlotsPage from "./pages/Admin/BookingSlotsPage";
 function App() {
   return (
     <div>
-      <Application>
+  
         <Router>
           <Routes>
             <Route path="/" element={<UserLoginPage />} />
@@ -31,7 +31,7 @@ function App() {
             <Route path="/slot" element={<BookingSlotsPage/>} />
           </Routes>
         </Router>
-      </Application>
+   
     </div>
   );
 }
