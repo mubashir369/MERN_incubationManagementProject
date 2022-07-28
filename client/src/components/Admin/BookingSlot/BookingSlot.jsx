@@ -24,21 +24,20 @@ function BookingSlot() {
     const valu = formData.find((item) => item === id);
     if (valu === undefined) {
       axios.get("http://localhost:9000/admin/allForms").then((res) => {
-      const allForm = res.data.Forms;
-      setApplicantsList(
-        allForm.filter(
-          (form) => form.status === "approved" && form.slot === "Not"
-        )
-      );
-    });
-    handleShow();
+        const allForm = res.data.Forms;
+        setApplicantsList(
+          allForm.filter(
+            (form) => form.status === "approved" && form.slot === "Not"
+          )
+        );
+      });
+      handleShow();
+      
 
-    setClickId(id);
-    }else{
-      alert("This Slot Already Booked try another Slot")
+      setClickId(id);
+    } else {
+      alert("This Slot Already Booked try another Slot");
     }
-
-    
   };
   const save = (e) => {
     e.preventDefault();
@@ -52,7 +51,7 @@ function BookingSlot() {
       axios.post(`http://localhost:9000/admin/setSlot/`, data);
       handleClose();
     } else {
-      alert("please choose options");
+      alert("You have not selected anything");
     }
   };
   useEffect(() => {
